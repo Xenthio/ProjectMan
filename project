@@ -5,7 +5,9 @@ import os
 from pathlib import Path
 
 # [ ----- VERSION: ----- ]
-versionNumber = "Development version 0.0.2"
+versionNumber = """Project Manager. Version: 0002_b, (GNU GPLv3 License)
+Written by Xenthio
+"""
 # [ ----- VERSION: ----- ]
 
 developerMode = True
