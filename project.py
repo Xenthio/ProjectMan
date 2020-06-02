@@ -4,8 +4,14 @@ import json
 import os
 from pathlib import Path
 
+# [ ----- VERSION: ----- ]
+version = "Development version 0.0.2"
+# [ ----- VERSION: ----- ]
+
 
 Error = "\033[1;31mError\033[1;37m: "
+Success = "\033[92m==>\033[1;37m: "
+
 Changing = "Changing into \'%s\'..."
 NotFound = Error + "\'%s\' not found in projects root.\nCheck if it exists or the config (~/.projectcfg) is setup correctly."
 FirstTime = "This is your first time using Project,\nplease specify a directory to use as a project root...\n(e.g. /home/xen/projects/)"
@@ -33,6 +39,7 @@ if os.path.exists(ConfigFile) != True:
 	file1.close()
 	exit()
 
+
 def help():
 	helpText = """
 project [-cdDghv] [project]
@@ -54,6 +61,12 @@ Options:
 	  """
 
 	print(helpText)
+
+
+def checkVersion():
+	print(sucess + version)
+
+
 
 def changeDir(arg):
 	path = "error"
