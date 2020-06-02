@@ -1,7 +1,7 @@
 #!/bin/zsh
 echo "NOTE: Linux users may need to run this script as root.\n"
 
-cp ./project.py /usr/local/bin/project # copy exectuable over to usr local bin.
+cp ./project /usr/local/bin/project # copy exectuable over to usr local bin.
 chmod +x /usr/local/bin/project # just in case.
 
 # -- make shortcuts and aliases --
