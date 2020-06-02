@@ -63,7 +63,7 @@ def version():
 	print(versionNumber)
 def notImplemented():
 	print("not implemented yet")
-	
+
 
 def changeDir(arg):
 	path = "error"
@@ -85,12 +85,12 @@ ProjectsRoot = settings['ProjectsRoot']
 
 def listprojects():
 	print(" ")
-	Dirs = list(os.walk(ProjectsRoot))
-	Dirs.pop(0)
-	for x in Dirs:
-		#print(x[0] + "/projectfile")
+	Dirs = os.listdir(ProjectsRoot)
+	for i in Dirs:
+		x = ProjectsRoot + i
+		#print(x + "/projectfile")
 		try:
-			with open(x[0] + "/projectfile", 'r') as checkPass2:
+			with open(x + "/projectfile", 'r') as checkPass2:
 				data3=checkPass2.read()
 			projectfile2 = json.loads(data3)
 			print(projectfile2['FolderName'], end=" ----- (aka ")
@@ -98,16 +98,17 @@ def listprojects():
 				print(i, end =", ")
 			print(")")
 		except OSError as e:
+			#print(e)
 			pass
 	print(" ")
 def goto(projecc):
-	Dirs = list(os.walk(ProjectsRoot))
-	Dirs.pop(0)
+	Dirs = os.listdir(ProjectsRoot)
 	found = 0
-	for x in Dirs:
-		#print(x[0] + "/projectfile")
+	for i in Dirs:
+		x = ProjectsRoot + i
+		#print(x + "/projectfile")
 		try:
-			with open(x[0] + "/projectfile", 'r') as checkPass:
+			with open(x + "/projectfile", 'r') as checkPass:
 				data2=checkPass.read()
 			projectfile = json.loads(data2)
 			if projecc.upper() in map(str.upper,projectfile['Aliases']):
