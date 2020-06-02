@@ -3,13 +3,17 @@ import sys
 import json
 import os
 from pathlib import Path
-versionNumber = """Project Manager. Version: 0002_a, (GNU GPLv3 License)
-Written by Xenthio
-"""
+
+# [ ----- VERSION: ----- ]
+versionNumber = "Development version 0.0.2"
+# [ ----- VERSION: ----- ]
+
 developerMode = True
 
 Error = "\033[1;31mError\033[1;37m: "
 Dev = "\033[1;32mDev\033[1;37m: "
+Success = "\033[92m==>\033[1;37m "
+
 Changing = "Changing into \'%s\'..."
 NotFound = Error + "\'%s\' not found in projects root.\nCheck if it exists or the config (~/.projectcfg) is setup correctly."
 FirstTime = "This is your first time using Project,\nplease specify a directory to use as a project root...\n(e.g. /home/xen/projects/)"
@@ -56,11 +60,13 @@ if os.path.exists(ConfigFile) != True:
 
 
 def help():
-
 	print(Help)
 
+
 def version():
-	print(versionNumber)
+	print(Success + versionNumber)
+
+
 def notImplemented():
 	print("not implemented yet")
 

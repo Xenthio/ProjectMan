@@ -1,10 +1,24 @@
 # ProjectMan
+ProjectMan is a simple project manager for easily managing and CD'ing to your
+projects.
 
 ## Install
+
+### On (superior) UNIX based operating systems
 ```
 git clone https://github.com/Xenthio/ProjectMan.git
 cd ./ProjectMan-master
 ./installproject.sh
+```
+
+### On Windows 7/8/10
+###### (I feel bad for you)
+
+NOTE: First install [git!](https://gitforwindows.org/)
+```
+git clone https://github.com/Xenthio/ProjectMan.git
+cd ./ProjectMan-master
+./installproject.bat
 ```
 
 ## Usage
