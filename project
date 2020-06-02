@@ -6,7 +6,7 @@ from pathlib import Path
 
 # [ ----- VERSION: ----- ]
 versionNumber = """Project Manager. Version: 0002_b, (GNU GPLv3 License)
-Written by Xenthio
+Written by Xenthio and Daniel071
 """
 # [ ----- VERSION: ----- ]
 
