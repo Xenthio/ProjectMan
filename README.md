@@ -1,4 +1,6 @@
 # ProjectMan
+ProjectMan is a simple project manager for easily managing and CD'ing to your
+projects.
 
 ## Install
 ```
