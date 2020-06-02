@@ -70,6 +70,7 @@ else:
 			if sys.argv[1].upper() in map(str.upper,projectfile['Aliases']):
 				print(Changing % projectfile['FolderName'])
 				os.chdir(ProjectsRoot + projectfile['FolderName'])
+				print(ProjectsRoot + projectfile['FolderName'])
 				os.system(os.environ['SHELL'])
 				found = 1
 		except:
