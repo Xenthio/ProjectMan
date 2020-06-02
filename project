@@ -3,9 +3,13 @@ import sys
 import json
 import os
 from pathlib import Path
-
+versionNumber = """Project Manager. Version: 0002_a, (GNU GPLv3 License)
+Written by Xenthio
+"""
+developerMode = True
 
 Error = "\033[1;31mError\033[1;37m: "
+Dev = "\033[1;32mDev\033[1;37m: "
 Changing = "Changing into \'%s\'..."
 NotFound = Error + "\'%s\' not found in projects root.\nCheck if it exists or the config (~/.projectcfg) is setup correctly."
 FirstTime = "This is your first time using Project,\nplease specify a directory to use as a project root...\n(e.g. /home/xen/projects/)"
@@ -13,6 +17,23 @@ PreferedShell = "Please specify your prefered shell. (e.g. /bin/bash)"
 FirstPromptDir = "Directory: "
 FirstPromptShell = "Path: "
 SetupNotFound = Error + "Cannot open \'%s\', the specified directory is invalid."
+Help = """project [-cdDghv] [project]
+
+Usage:
+  project [-g|--goto] <project>
+  project -l | --list
+  project -h | --help
+  project -v | --version
+
+Options:
+  -h --help         Show this screen.
+  -v --version      Show version.
+  -g --goto         Default: Goto project folder.
+  -c --create       Create project file.
+  -d --delete       Delete project file.
+  -D --deleteAll    Delete entire project folder.
+  -l --list         List all projects.
+"""
 ConfigFile = str(Path.home()) + "/.projectcfg"
 
 if os.path.exists(ConfigFile) != True:
@@ -34,7 +55,12 @@ if os.path.exists(ConfigFile) != True:
 	exit()
 
 def help():
-	print("help")
+	print(Help)
+
+def version():
+	print(versionNumber)
+def notImplemented():
+	print("not implemented yet")
 
 def changeDir(arg):
 	path = "error"
@@ -54,10 +80,24 @@ with open(ConfigFile, 'r') as config:
 settings = json.loads(data)
 ProjectsRoot = settings['ProjectsRoot']
 
-
-if len(sys.argv) == 1:
-	help() #no command
-else:
+def listprojects():
+	print(" ")
+	Dirs = list(os.walk(ProjectsRoot))
+	Dirs.pop(0)
+	for x in Dirs:
+		#print(x[0] + "/projectfile")
+		try:
+			with open(x[0] + "/projectfile", 'r') as checkPass2:
+				data3=checkPass2.read()
+			projectfile2 = json.loads(data3)
+			print(projectfile2['FolderName'], end=" ----- (aka ")
+			for i in projectfile2['Aliases']:
+				print(i, end =", ")
+			print(")")
+		except OSError as e:
+			pass
+	print(" ")
+def goto(projecc):
 	Dirs = list(os.walk(ProjectsRoot))
 	Dirs.pop(0)
 	found = 0
@@ -67,13 +107,33 @@ else:
 			with open(x[0] + "/projectfile", 'r') as checkPass:
 				data2=checkPass.read()
 			projectfile = json.loads(data2)
-			if sys.argv[1].upper() in map(str.upper,projectfile['Aliases']):
+			if projecc.upper() in map(str.upper,projectfile['Aliases']):
 				print(Changing % projectfile['FolderName'])
 				os.chdir(ProjectsRoot + projectfile['FolderName'])
-				print(ProjectsRoot + projectfile['FolderName'])
+				if developerMode:
+					print(Dev + ProjectsRoot + projectfile['FolderName'])
 				os.system(os.environ['SHELL'])
 				found = 1
 		except:
 			pass
 	if found == 0:
-		print(NotFound % sys.argv[1])
+		print(NotFound % projecc)
+
+if len(sys.argv) == 1:
+	help() #no command
+elif sys.argv[1] in ("-g", "--goto"):
+	goto(sys.argv[2])
+elif sys.argv[1] in ("-h", "--help"):
+	help()
+elif sys.argv[1] in ("-v", "--version"):
+	version()
+elif sys.argv[1] in ("-c", "--create"):
+	notImplemented()
+elif sys.argv[1] in ("-d", "--delete"):
+	notImplemented()
+elif sys.argv[1] in ("-D", "--deleteAll"):
+	notImplemented()
+elif sys.argv[1] in ("-l", "--list"):
+	listprojects()
+else:
+	goto(sys.argv[1])
