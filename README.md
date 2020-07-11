@@ -4,7 +4,7 @@ projects.
 
 ## Install
 
-### On (superior) UNIX based operating systems
+### On UNIX based operating systems
 ```
 git clone https://github.com/Xenthio/ProjectMan.git
 cd ./ProjectMan-master
@@ -12,13 +12,12 @@ cd ./ProjectMan-master
 ```
 
 ### On Windows 7/8/10
-###### (I feel bad for you)
 
 **NOTE: First install [git!](https://gitforwindows.org/)**
 ```
 git clone https://github.com/Xenthio/ProjectMan.git
-cd ./ProjectMan-master
-./installproject.bat
+cd .\ProjectMan-master
+.\installproject.bat
 ```
 
 ## Usage
